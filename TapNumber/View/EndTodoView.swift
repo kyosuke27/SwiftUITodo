@@ -25,6 +25,7 @@ struct EndTodoView: View {
     @State var todoText = ""
     @State var alertType: AlertType = .editTodo
     @AppStorage("isReview") var isReview = false
+    @State private var refreshId = UUID()
     var body: some View {
 
         NavigationView {
@@ -66,13 +67,16 @@ struct EndTodoView: View {
                 let adSize =
                     GADCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(
                         screenWidth)
-                if purchaseManager.hasReleaseAd{
+                if !purchaseManager.isAdRemoved {
                     BannerView(adSize)
                         .frame(
                             width: screenWidth,
                             height: adSize.size.height
                         )
                 }
+            }
+            .onChange(of: purchaseManager.isAdRemoved) { _ in
+                refreshId = UUID()
             }
             .onAppear {
                 // 完了タスク数が5以上かつ今までレビューしていない場合に表示する

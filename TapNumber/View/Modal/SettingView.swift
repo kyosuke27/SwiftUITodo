@@ -23,10 +23,10 @@ struct SettingView: View {
 
                 }
                 ForEach(purchaseManager.products) { (product) in
-                    VStack {
-                        if purchaseManager.isReleaase(product: product) {
-                            Text("\(product.displayName)は購入済みです")
-                        } else {
+                    if purchaseManager.isReleaase(product: product) {
+                        //                            Text("\(product.displayName)は購入済みです")
+                    } else {
+                        VStack {
                             Button {
                                 Task {
                                     do {

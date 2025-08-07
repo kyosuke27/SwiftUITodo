@@ -13,7 +13,7 @@ class Interstitial: NSObject, GADFullScreenContentDelegate, ObservableObject {
     func loadInterstitial() {
         GADInterstitialAd.load(
             withAdUnitID: Bundle.main.object(
-                forInfoDictionaryKey: "GADBannerAdInterID") as? String ?? "",
+                forInfoDictionaryKey: "GADAdInterID") as? String ?? "",
             request: GADRequest()
         ) { (ad, error) in
             if error != nil {

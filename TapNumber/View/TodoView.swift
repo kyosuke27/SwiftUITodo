@@ -51,12 +51,10 @@ struct TodoView: View {
                             width: screenWidth,
                             height: adSize.size.height
                         )
-                } else {
-                    Text("広告非表示")
                 }
             }
-            .onChange(of: purchaseManager.isAdRemoved ){_ in
-               refreshId = UUID()
+            .onChange(of: purchaseManager.isAdRemoved) { _ in
+                refreshId = UUID()
             }
             .onAppear {
                 interstitial.loadInterstitial()
